@@ -1,2 +1,2 @@
 # sepasurfer
-Modern SEPA payment transactions
+Sufing the European payment area since 2023.
