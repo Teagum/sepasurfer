@@ -10,12 +10,14 @@ readme = "README.md"
 python = "^3.11"
 pydantic = "^2.6.1"
 sepaxml = "^2.6.1"
+pandas = "^2.2.1"
 
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.8.0"
 pylint = "^3.0.3"
 hypothesis = "^6.98.9"
+pytest = "^8.0.2"
 
 
 [tool.poetry.group.notebook.dependencies]
