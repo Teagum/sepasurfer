@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sepasurfer"
-version = "0.1.0"
+version = "0.1.1"
 description = "Modern SEPA transaction framework"
 authors = ["Michael Blaß <mblass@posteo.net>"]
 license = "BSD3"
