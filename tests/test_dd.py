@@ -20,7 +20,7 @@ def ddt(creditor_account):
 
 @pytest.fixture
 def member_data():
-    return pd.read_pickle("/Users/pmind/fvdsr/vorstand.pkl")
+    return pd.read_pickle("/Users/pmind/fvdsr/data/contrib/2024-02-25/2024-02-25.pkl")
 
 
 def test_create_dd(creditor_account):

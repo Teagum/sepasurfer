@@ -12,6 +12,7 @@ class DirectDebitTransaction:
             self,
             config: TransactionConfig,
             creditor: Account,
+            collection_date: datetime.date | None = None,
             schema: str = "pain.008.001.02",
             clean: bool = True
             ) -> None:
@@ -19,6 +20,11 @@ class DirectDebitTransaction:
         self.creditor = creditor
         self.schema = schema
         self.clean = clean
+
+        if collection_date is None:
+            self.collection_date = datetime.date.today() + datetime.timedelta(days=2)
+        else:
+            self.collection_date = collection_date
 
         _config = config.model_dump()
         _config.update(creditor.model_dump(by_alias=True))
@@ -34,14 +40,13 @@ class DirectDebitTransaction:
     def debtors_from_df(self, df: pd.DataFrame, description: str
                         ) -> list[DirectDebit]:
         out = []
-        date = datetime.date.today()+datetime.timedelta(days=2)
         for _, member in df.iterrows():
             dd = DirectDebit(
                 name=f"{member.Vorname} {member.Nachname}",
                 iban=member.IBAN,
                 bic=member.BIC,
                 amount=utils.contrib(member.Mitgliedsbeitrag),
-                collection_date=date,
+                collection_date=self.collection_date,
                 sequence_type="RCUR",
                 mandate_id=str(member.Mandatsreferenz),
                 mandate_date=member['Erteilt am'].date(),
